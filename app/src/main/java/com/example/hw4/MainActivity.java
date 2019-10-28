@@ -17,11 +17,15 @@ public class MainActivity extends AppCompatActivity {
                 currentNum++;
                 number.setText(Integer.toString(currentNum));
             }
+            else if (view.getId() == R.id.subOneBtn) {
+                currentNum--;
+                number.setText(Integer.toString(currentNum));
+            }
         }
     }
 
     private int currentNum = 0;
-    private Button addOne;
+    private Button addOne, subOne;
     private TextView number;
     private Listener listener;
 
@@ -33,8 +37,10 @@ public class MainActivity extends AppCompatActivity {
         listener = new Listener();
 
         addOne = findViewById(R.id.addOneBtn);
+        subOne = findViewById(R.id.subOneBtn);
         number = findViewById(R.id.number);
 
         addOne.setOnClickListener(listener);
+        subOne.setOnClickListener(listener);
     }
 }
