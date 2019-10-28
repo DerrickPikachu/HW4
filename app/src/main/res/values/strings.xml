@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">HW4</string>
     <string name="initial_number">0</string>
-    <string name="add_one">add 1</string>
+    <string name="add_one">+1</string>
 </resources>
