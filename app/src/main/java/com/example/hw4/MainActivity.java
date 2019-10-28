@@ -2,14 +2,20 @@ package com.example.hw4;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
 
-    private class Listener implements View.OnClickListener {
+    private class Listener implements View.OnClickListener, View.OnTouchListener {
+
+        private float initX, initY;
 
         @Override
         public void onClick(View view) {
@@ -21,6 +27,44 @@ public class MainActivity extends AppCompatActivity {
                 currentNum--;
                 number.setText(Integer.toString(currentNum));
             }
+        }
+
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                initX = motionEvent.getX();
+                initY = motionEvent.getY();
+            }
+            else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                float diffX = motionEvent.getX() - initX;
+                float diffY = motionEvent.getY() - initY;
+
+                if (diffX == 0) {
+                    //TODO
+                }
+                else {
+                    float slope = diffY / diffX;
+
+                    if (slope  <= 1.0 && slope >= -1.0) {
+                        int r, g, b;
+                        Random rand = new Random();
+
+                        r = rand.nextInt();
+                        g = rand.nextInt();
+                        b = rand.nextInt();
+
+                        if (diffX > 0) {
+                            //slide right
+                            number.setBackgroundColor(Color.rgb(r, g, b));
+                        }
+                        else if (diffX < 0) {
+                            // slide left
+                            number.setTextColor(Color.rgb(r, g, b));
+                        }
+                    }
+                }
+            }
+            return true;
         }
     }
 
@@ -42,5 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
         addOne.setOnClickListener(listener);
         subOne.setOnClickListener(listener);
+
+        number.setOnTouchListener(listener);
     }
 }
