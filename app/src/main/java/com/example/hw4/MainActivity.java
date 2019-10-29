@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
                 currentNum--;
                 number.setText(Integer.toString(currentNum));
             }
+
+            isTargetReached();
         }
 
         /*
@@ -92,6 +94,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             }
+
+            isTargetReached();
+
             return true;
         }
     }
@@ -121,5 +126,15 @@ public class MainActivity extends AppCompatActivity {
         Random rand = new Random();
         target = Math.abs(rand.nextInt() % 500);
         targetNum.setText(targetNum.getText() + Integer.toString(target));
+    }
+
+    private void isTargetReached() {
+        if (currentNum == target) {
+            targetNum.setText("Congratulation!!\n" + "You reach the target!!");
+        }
+    }
+
+    private void reset() {
+        //TODO
     }
 }
