@@ -29,6 +29,29 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        /*
+        OnTouch:
+            Use slope of the vector formed by initial position and last position
+            to decide whether it is vertical or horizontal. Then decide it direction.
+
+            slide up    ---->   currentNum * 2
+            slide down  ---->   currentNum + 10
+            slide right ---->   random background color
+            slide left  ---->   random text color
+
+            To be careful: The coordinate should be like this
+
+                phone
+                ------------
+                |       X  |
+                |     ---> |
+                |     |    |
+                |     |    |
+                |  Y  V    |
+                |          |
+                ------------
+         */
+
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
             if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
@@ -40,7 +63,16 @@ public class MainActivity extends AppCompatActivity {
                 float diffY = motionEvent.getY() - initY;
 
                 if (diffX == 0 || diffY / diffX > 1.0 || diffY / diffX < -1.0 ) {
-                    
+                    if (diffY < 0) {
+                        //slide up
+                        currentNum *= 2;
+                        number.setText(Integer.toString(currentNum));
+                    }
+                    else {
+                        //slide down
+                        currentNum += 10;
+                        number.setText(Integer.toString(currentNum));
+                    }
                 }
                 else {
                     int r, g, b;
