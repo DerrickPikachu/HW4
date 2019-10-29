@@ -39,28 +39,24 @@ public class MainActivity extends AppCompatActivity {
                 float diffX = motionEvent.getX() - initX;
                 float diffY = motionEvent.getY() - initY;
 
-                if (diffX == 0) {
-                    //TODO
+                if (diffX == 0 || diffY / diffX > 1.0 || diffY / diffX < -1.0 ) {
+                    
                 }
                 else {
-                    float slope = diffY / diffX;
+                    int r, g, b;
+                    Random rand = new Random();
 
-                    if (slope  <= 1.0 && slope >= -1.0) {
-                        int r, g, b;
-                        Random rand = new Random();
+                    r = rand.nextInt();
+                    g = rand.nextInt();
+                    b = rand.nextInt();
 
-                        r = rand.nextInt();
-                        g = rand.nextInt();
-                        b = rand.nextInt();
-
-                        if (diffX > 0) {
-                            //slide right
-                            number.setBackgroundColor(Color.rgb(r, g, b));
-                        }
-                        else if (diffX < 0) {
-                            // slide left
-                            number.setTextColor(Color.rgb(r, g, b));
-                        }
+                    if (diffX > 0) {
+                        //slide right
+                        number.setBackgroundColor(Color.rgb(r, g, b));
+                    }
+                    else if (diffX < 0) {
+                        // slide left
+                        number.setTextColor(Color.rgb(r, g, b));
                     }
                 }
             }
