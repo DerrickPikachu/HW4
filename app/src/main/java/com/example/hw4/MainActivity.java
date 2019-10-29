@@ -96,9 +96,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private int currentNum = 0;
+    private int currentNum = 0, target;
     private Button addOne, subOne;
-    private TextView number;
+    private TextView number, targetNum;
     private Listener listener;
 
     @Override
@@ -111,10 +111,15 @@ public class MainActivity extends AppCompatActivity {
         addOne = findViewById(R.id.addOneBtn);
         subOne = findViewById(R.id.subOneBtn);
         number = findViewById(R.id.number);
+        targetNum = findViewById(R.id.targetNum);
 
         addOne.setOnClickListener(listener);
         subOne.setOnClickListener(listener);
 
         number.setOnTouchListener(listener);
+
+        Random rand = new Random();
+        target = Math.abs(rand.nextInt() % 500);
+        targetNum.setText(targetNum.getText() + Integer.toString(target));
     }
 }
