@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             isTargetReached();
+            updatePlayerTried();
         }
 
         /*
@@ -75,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
                         currentNum += 10;
                         number.setText(Integer.toString(currentNum));
                     }
+
+                    updatePlayerTried();
                 }
                 else {
                     int r, g, b;
@@ -101,9 +104,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private int currentNum = 0, target;
+    private int currentNum = 0, target, playerTried = 0;
     private Button addOne, subOne;
-    private TextView number, targetNum;
+    private TextView number, targetNum, triedTxv;
     private Listener listener;
 
     @Override
@@ -117,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
         subOne = findViewById(R.id.subOneBtn);
         number = findViewById(R.id.number);
         targetNum = findViewById(R.id.targetNum);
+        triedTxv = findViewById(R.id.triedTxv);
 
         addOne.setOnClickListener(listener);
         subOne.setOnClickListener(listener);
@@ -132,6 +136,12 @@ public class MainActivity extends AppCompatActivity {
         if (currentNum == target) {
             targetNum.setText("Congratulation!!\n" + "You reach the target!!");
         }
+    }
+
+    private void updatePlayerTried() {
+        String tem = "you tried: ";
+        playerTried++;
+        triedTxv.setText(tem + playerTried);
     }
 
     private void reset() {

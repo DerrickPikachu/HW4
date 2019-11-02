@@ -4,4 +4,5 @@
     <string name="add_one">+1</string>
     <string name="sub_one">-1</string>
     <string name="target">Target:</string>
+    <string name="triedTime">you tried: 0</string>
 </resources>
